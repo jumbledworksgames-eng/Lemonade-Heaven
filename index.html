@@ -1,25 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Lemonade Heaven</title>
+    <title>Lemonade Heaven 🍋</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>🍋 Lemonade Heaven</h1>
 
-    <h2>Money: $<span id="money">0</span></h2>
+    <div class="game">
+        <h1>🍋 Lemonade Heaven</h1>
+        <p class="subtitle">Build the ultimate lemonade empire!</p>
 
-    <button onclick="sellLemonade()">Sell Lemonade</button>
+        <div class="money-box">
+            💰 Money: $<span id="money">0</span>
+        </div>
 
-    <h3>Upgrades</h3>
+        <div class="stand">
+            🍋
+        </div>
 
-    <button onclick="buyUpgrade()">
-        Better Recipe ($10)
-    </button>
+        <button onclick="sellLemonade()" class="main-button">
+            Sell Lemonade
+        </button>
 
-    <p>Lemonade per click: <span id="power">1</span></p>
+        <div class="stats">
+            <p>
+                Lemonade per sale:
+                <b><span id="power">1</span></b>
+            </p>
+        </div>
+
+        <div class="shop">
+            <h2>🏪 Shop</h2>
+
+            <button onclick="buyUpgrade()">
+                Better Recipe
+                <br>
+                $<span id="upgradeCost">10</span>
+            </button>
+
+            <p id="message">
+                Start selling lemonade!
+            </p>
+        </div>
+    </div>
 
     <script src="script.js"></script>
+
 </body>
 </html>
