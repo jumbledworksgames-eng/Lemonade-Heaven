@@ -1,54 +1,186 @@
 let money = 0;
-let power = 1;
-let upgradeCost = 10;
+
+let clickPower = 1;
+let income = 0;
+let multiplier = 1;
 
 
-function sellLemonade() {
+let upgrades = {
 
-    money += power;
+recipe:{
+price:10
+},
 
-    document.getElementById("message").innerHTML =
-        "🍋 Lemonade sold!";
+employee:{
+price:50
+},
 
-    update();
+shop:{
+price:250
+},
+
+factory:{
+price:1000
+},
+
+delivery:{
+price:5000
+},
+
+ads:{
+price:15000
+},
+
+farm:{
+price:50000
+},
+
+ai:{
+price:250000
+},
+
+global:{
+price:1000000
+}
+
+};
+
+
+
+function sell(){
+
+money += clickPower * multiplier;
+
+update();
 
 }
 
 
-function buyUpgrade() {
 
-    if (money >= upgradeCost) {
+function buy(item){
 
-        money -= upgradeCost;
-
-        power += 1;
-
-        upgradeCost *= 2;
+let upgrade = upgrades[item];
 
 
-        document.getElementById("message").innerHTML =
-            "✨ Recipe upgraded!";
-
-    } else {
-
-        document.getElementById("message").innerHTML =
-            "❌ Not enough money!";
-
-    }
+if(money >= upgrade.price){
 
 
-    update();
+money -= upgrade.price;
+
+
+
+switch(item){
+
+
+case "recipe":
+clickPower += 1;
+break;
+
+
+case "employee":
+income += 0.1;
+break;
+
+
+case "shop":
+multiplier += 0.1;
+break;
+
+
+case "factory":
+income += 10;
+break;
+
+
+case "delivery":
+income += 5;
+break;
+
+
+case "ads":
+multiplier += 0.25;
+break;
+
+
+case "farm":
+income += 50;
+break;
+
+
+case "ai":
+income += 250;
+break;
+
+
+case "global":
+multiplier *= 2;
+break;
+
 
 }
 
 
 
-function update() {
+upgrade.price *= 2;
 
-    document.getElementById("money").innerHTML = money;
 
-    document.getElementById("power").innerHTML = power;
+document.getElementById("message").innerHTML =
+"✨ Upgrade purchased!";
 
-    document.getElementById("upgradeCost").innerHTML = upgradeCost;
 
 }
+
+else{
+
+
+document.getElementById("message").innerHTML =
+"❌ Not enough money!";
+
+
+}
+
+
+update();
+
+}
+
+
+
+
+function update(){
+
+
+document.getElementById("money").innerHTML =
+Math.floor(money);
+
+
+
+document.getElementById("click").innerHTML =
+Math.floor(clickPower * multiplier);
+
+
+
+document.getElementById("second").innerHTML =
+Math.floor(income * multiplier);
+
+
+
+for(let item in upgrades){
+
+document.getElementById(item+"-price").innerHTML =
+upgrades[item].price;
+
+}
+
+
+}
+
+
+
+setInterval(()=>{
+
+money += income * multiplier;
+
+update();
+
+},1000);
