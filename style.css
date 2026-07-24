@@ -1,140 +1,163 @@
-body {
+body{
 
-    margin: 0;
+margin:0;
 
-    min-height: 100vh;
+font-family:Arial;
 
-    display: flex;
+background:linear-gradient(#6dd5fa,#fff3a6);
 
-    justify-content: center;
+min-height:100vh;
 
-    align-items: center;
+display:flex;
 
-    font-family: Arial, sans-serif;
-
-    background: linear-gradient(
-        skyblue,
-        #fff59d
-    );
+justify-content:center;
 
 }
 
 
-.game {
 
-    background: white;
+.container{
 
-    width: 400px;
+margin-top:40px;
 
-    padding: 30px;
+background:white;
 
-    border-radius: 25px;
+padding:30px;
 
-    text-align: center;
+width:500px;
 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+border-radius:30px;
 
-}
+text-align:center;
 
-
-h1 {
-
-    font-size: 42px;
-
-    color: #f5a623;
-
-    margin-bottom: 5px;
+box-shadow:0 10px 30px #999;
 
 }
 
 
-.subtitle {
 
-    color: gray;
+h1{
 
-}
+font-size:45px;
 
-
-.money {
-
-    background: #fff2a8;
-
-    padding: 15px;
-
-    border-radius: 15px;
-
-    font-size: 28px;
-
-    margin: 20px;
+color:#f5a623;
 
 }
 
 
-.lemon {
 
-    font-size: 90px;
+.subtitle{
 
-    margin: 20px;
-
-}
-
-
-button {
-
-    background: #ffd43b;
-
-    border: none;
-
-    border-radius: 15px;
-
-    padding: 15px 25px;
-
-    font-size: 20px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    margin: 10px;
-
-    box-shadow: 0 5px #d39e00;
+color:#777;
 
 }
 
 
-button:hover {
 
-    transform: translateY(-3px);
+.money{
 
-}
+font-size:35px;
 
+background:#fff3a6;
 
-button:active {
+padding:15px;
 
-    transform: translateY(3px);
+border-radius:20px;
 
-    box-shadow: 0 2px #d39e00;
-
-}
-
-
-.shop {
-
-    background: #f4f4f4;
-
-    padding: 15px;
-
-    border-radius: 20px;
-
-    margin-top: 20px;
+margin:20px;
 
 }
 
 
-#message {
 
-    font-style: italic;
+button{
 
-    color: #555;
+background:#ffd43b;
+
+border:none;
+
+border-radius:15px;
+
+padding:15px;
+
+font-size:18px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+box-shadow:0 5px #c99b00;
+
+}
+
+
+
+button:hover{
+
+transform:translateY(-3px);
+
+}
+
+
+
+button:active{
+
+transform:translateY(3px);
+
+box-shadow:none;
+
+}
+
+
+
+.sell{
+
+font-size:25px;
+
+padding:20px 40px;
+
+}
+
+
+
+.stats{
+
+display:flex;
+
+justify-content:space-around;
+
+margin:20px;
+
+font-size:20px;
+
+}
+
+
+
+.upgrades{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:15px;
+
+}
+
+
+
+small{
+
+color:#555;
+
+}
+
+
+
+#message{
+
+margin-top:25px;
+
+font-style:italic;
 
 }
