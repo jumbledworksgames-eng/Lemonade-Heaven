@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Lemonade Heaven 🍋</title>
     <link rel="stylesheet" href="style.css">
@@ -8,132 +7,167 @@
 
 <body>
 
-<div class="container">
+<div class="game">
 
-    <h1>🍋 Lemonade Heaven</h1>
-    <p class="subtitle">Turn a lemonade stand into an empire.</p>
+<!-- START SCREEN -->
 
+<div id="startScreen">
 
-    <div class="money">
-        💰 $<span id="money">0</span>
-    </div>
+<h1>🍋 Lemonade Heaven</h1>
 
+<p>
+Build a lemonade stand.
+<br>
+Create a lemonade empire.
+</p>
 
-    <button class="sell" onclick="sell()">
-        🍋 Sell Lemonade
-    </button>
+<button onclick="newGame()">
+NEW GAME
+</button>
 
+<button onclick="continueGame()">
+CONTINUE
+</button>
 
-    <div class="stats">
-
-        <div>
-            Click:
-            $<span id="click">1</span>
-        </div>
-
-        <div>
-            Per Second:
-            $<span id="second">0</span>
-        </div>
-
-    </div>
+</div>
 
 
 
-    <h2>🏪 Upgrades</h2>
+<!-- GAME SCREEN -->
+
+<div id="gameScreen" style="display:none;">
+
+<h1>🍋 Lemonade Heaven</h1>
 
 
-    <div class="upgrades">
+<div class="money">
+💰 $<span id="money">0</span>
+</div>
 
 
-        <button onclick="buy('recipe')">
-            🍋 Better Recipe
-            <br>
-            <small>+1 per click</small>
-            <br>
-            $<span id="recipe-price">10</span>
-        </button>
+<button class="sell" onclick="sellLemonade()">
+🍋 Sell Lemonade
+</button>
 
 
-        <button onclick="buy('employee')">
-            👥 Employees
-            <br>
-            <small>+$0.1/sec</small>
-            <br>
-            $<span id="employee-price">50</span>
-        </button>
+
+<div class="stats">
+
+<p>
+Per Click:
+$<span id="clickPower">1</span>
+</p>
+
+<p>
+Per Second:
+$<span id="income">0</span>
+</p>
+
+</div>
 
 
-        <button onclick="buy('shop')">
-            🏪 Shops
-            <br>
-            <small>+10% profit</small>
-            <br>
-            $<span id="shop-price">250</span>
-        </button>
+
+<h2>🏪 Upgrades</h2>
 
 
-        <button onclick="buy('factory')">
-            🏭 Factory
-            <br>
-            <small>+$10/sec</small>
-            <br>
-            $<span id="factory-price">1000</span>
-        </button>
+<div class="upgrades">
 
 
-        <button onclick="buy('delivery')">
-            🚚 Delivery
-            <br>
-            <small>+$5/sec</small>
-            <br>
-            $<span id="delivery-price">5000</span>
-        </button>
+<button onclick="buy('recipe')">
+🍋 Better Recipe
+<br>
++$1/click
+<br>
+$<span id="recipe">10</span>
+</button>
 
 
-        <button onclick="buy('ads')">
-            📢 Advertising
-            <br>
-            <small>+25% profit</small>
-            <br>
-            $<span id="ads-price">15000</span>
-        </button>
+<button onclick="buy('employee')">
+👥 Employees
+<br>
++$0.1/sec
+<br>
+$<span id="employee">50</span>
+</button>
 
 
-        <button onclick="buy('farm')">
-            🍋 Lemon Farm
-            <br>
-            <small>+$50/sec</small>
-            <br>
-            $<span id="farm-price">50000</span>
-        </button>
+<button onclick="buy('shop')">
+🏪 Shops
+<br>
++10% profit
+<br>
+$<span id="shop">250</span>
+</button>
 
 
-        <button onclick="buy('ai')">
-            🤖 AI Machines
-            <br>
-            <small>+$250/sec</small>
-            <br>
-            $<span id="ai-price">250000</span>
-        </button>
+<button onclick="buy('factory')">
+🏭 Factory
+<br>
++$10/sec
+<br>
+$<span id="factory">1000</span>
+</button>
 
 
-        <button onclick="buy('global')">
-            🌎 Global Expansion
-            <br>
-            <small>x2 profit</small>
-            <br>
-            $<span id="global-price">1000000</span>
-        </button>
+<button onclick="buy('delivery')">
+🚚 Delivery
+<br>
++$5/sec
+<br>
+$<span id="delivery">5000</span>
+</button>
 
 
-    </div>
+<button onclick="buy('advertising')">
+📢 Advertising
+<br>
++25% profit
+<br>
+$<span id="advertising">15000</span>
+</button>
 
 
-    <p id="message">
-        Welcome to your lemonade empire!
-    </p>
+<button onclick="buy('farm')">
+🍋 Lemon Farm
+<br>
++$50/sec
+<br>
+$<span id="farm">50000</span>
+</button>
 
+
+<button onclick="buy('ai')">
+🤖 AI Machines
+<br>
++$250/sec
+<br>
+$<span id="ai">250000</span>
+</button>
+
+
+<button onclick="buy('global')">
+🌎 Global Expansion
+<br>
+x2 profit
+<br>
+$<span id="global">1000000</span>
+</button>
+
+
+</div>
+
+
+<p id="message">
+Welcome!
+</p>
+
+
+<button onclick="resetGame()">
+Reset Game
+</button>
+
+
+</div>
 
 </div>
 
@@ -141,5 +175,4 @@
 <script src="script.js"></script>
 
 </body>
-
 </html>
