@@ -1,55 +1,69 @@
 let money = 0;
 
 let clickPower = 1;
+
 let income = 0;
+
 let multiplier = 1;
 
 
-let upgrades = {
+let prices = {
 
-recipe:{
-price:10
-},
-
-employee:{
-price:50
-},
-
-shop:{
-price:250
-},
-
-factory:{
-price:1000
-},
-
-delivery:{
-price:5000
-},
-
-ads:{
-price:15000
-},
-
-farm:{
-price:50000
-},
-
-ai:{
-price:250000
-},
-
-global:{
-price:1000000
-}
+recipe:10,
+employee:50,
+shop:250,
+factory:1000,
+delivery:5000,
+advertising:15000,
+farm:50000,
+ai:250000,
+global:1000000
 
 };
 
 
 
-function sell(){
+function newGame(){
 
-money += clickPower * multiplier;
+money = 0;
+
+clickPower = 1;
+
+income = 0;
+
+multiplier = 1;
+
+
+prices = {
+
+recipe:10,
+employee:50,
+shop:250,
+factory:1000,
+delivery:5000,
+advertising:15000,
+farm:50000,
+ai:250000,
+global:1000000
+
+};
+
+
+saveGame();
+
+
+openGame();
+
+}
+
+
+
+
+function openGame(){
+
+document.getElementById("startScreen").style.display="none";
+
+document.getElementById("gameScreen").style.display="block";
 
 update();
 
@@ -57,15 +71,27 @@ update();
 
 
 
+
+function sellLemonade(){
+
+money += clickPower * multiplier;
+
+update();
+
+saveGame();
+
+}
+
+
+
+
 function buy(item){
 
-let upgrade = upgrades[item];
+
+if(money >= prices[item]){
 
 
-if(money >= upgrade.price){
-
-
-money -= upgrade.price;
+money -= prices[item];
 
 
 
@@ -97,7 +123,7 @@ income += 5;
 break;
 
 
-case "ads":
+case "advertising":
 multiplier += 0.25;
 break;
 
@@ -121,21 +147,21 @@ break;
 
 
 
-upgrade.price *= 2;
+prices[item] *= 2;
 
 
 document.getElementById("message").innerHTML =
 "✨ Upgrade purchased!";
 
 
+saveGame();
+
 }
 
 else{
 
-
 document.getElementById("message").innerHTML =
 "❌ Not enough money!";
-
 
 }
 
@@ -143,6 +169,7 @@ document.getElementById("message").innerHTML =
 update();
 
 }
+
 
 
 
@@ -154,21 +181,86 @@ document.getElementById("money").innerHTML =
 Math.floor(money);
 
 
-
-document.getElementById("click").innerHTML =
+document.getElementById("clickPower").innerHTML =
 Math.floor(clickPower * multiplier);
 
 
-
-document.getElementById("second").innerHTML =
+document.getElementById("income").innerHTML =
 Math.floor(income * multiplier);
 
 
 
-for(let item in upgrades){
+for(let item in prices){
 
-document.getElementById(item+"-price").innerHTML =
-upgrades[item].price;
+document.getElementById(item).innerHTML =
+prices[item];
+
+}
+
+
+}
+
+
+
+
+
+function saveGame(){
+
+let save = {
+
+money,
+clickPower,
+income,
+multiplier,
+prices
+
+};
+
+
+localStorage.setItem(
+"lemonadeSave",
+JSON.stringify(save)
+);
+
+}
+
+
+
+
+function continueGame(){
+
+
+let save = localStorage.getItem(
+"lemonadeSave"
+);
+
+
+if(save){
+
+
+let data = JSON.parse(save);
+
+
+money = data.money;
+
+clickPower = data.clickPower;
+
+income = data.income;
+
+multiplier = data.multiplier;
+
+prices = data.prices;
+
+
+openGame();
+
+
+}
+
+else{
+
+
+alert("No saved game found!");
 
 }
 
@@ -176,11 +268,34 @@ upgrades[item].price;
 }
 
 
+
+
+
+function resetGame(){
+
+localStorage.removeItem(
+"lemonadeSave"
+);
+
+
+location.reload();
+
+}
+
+
+
+
+// Passive income
 
 setInterval(()=>{
 
+
 money += income * multiplier;
 
+
 update();
+
+saveGame();
+
 
 },1000);
