@@ -1,21 +1,27 @@
 body {
+
     margin: 0;
+
     min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
 
     font-family: Arial, sans-serif;
 
     background: linear-gradient(
-        #75d5ff,
-        #fff4a8
+        skyblue,
+        #fff59d
     );
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 
 .game {
+
     background: white;
 
     width: 400px;
@@ -27,42 +33,46 @@ body {
     text-align: center;
 
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+
 }
 
 
 h1 {
-    color: #f5a623;
 
     font-size: 42px;
 
+    color: #f5a623;
+
     margin-bottom: 5px;
+
 }
 
 
 .subtitle {
-    color: #777;
 
-    font-size: 18px;
+    color: gray;
+
 }
 
 
-.money-box {
+.money {
 
-    background: #fff3a6;
+    background: #fff2a8;
 
     padding: 15px;
 
     border-radius: 15px;
 
-    font-size: 25px;
+    font-size: 28px;
 
     margin: 20px;
+
 }
 
 
-.stand {
+.lemon {
 
-    font-size: 80px;
+    font-size: 90px;
 
     margin: 20px;
 
@@ -87,7 +97,7 @@ button {
 
     margin: 10px;
 
-    box-shadow: 0 5px #d6a900;
+    box-shadow: 0 5px #d39e00;
 
 }
 
@@ -103,14 +113,14 @@ button:active {
 
     transform: translateY(3px);
 
-    box-shadow: 0 2px #d6a900;
+    box-shadow: 0 2px #d39e00;
 
 }
 
 
 .shop {
 
-    background: #f5f5f5;
+    background: #f4f4f4;
 
     padding: 15px;
 
@@ -121,17 +131,10 @@ button:active {
 }
 
 
-.shop h2 {
-
-    margin-top: 0;
-
-}
-
-
 #message {
 
-    color: #555;
-
     font-style: italic;
+
+    color: #555;
 
 }
