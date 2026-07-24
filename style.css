@@ -2,35 +2,35 @@ body{
 
 margin:0;
 
-font-family:Arial;
-
-background:linear-gradient(#6dd5fa,#fff3a6);
-
-min-height:100vh;
+height:100vh;
 
 display:flex;
 
 justify-content:center;
 
+align-items:center;
+
+font-family:Arial;
+
+background:linear-gradient(#6dd5fa,#fff3a6);
+
 }
 
 
 
-.container{
-
-margin-top:40px;
+.game{
 
 background:white;
 
-padding:30px;
+width:550px;
 
-width:500px;
+padding:30px;
 
 border-radius:30px;
 
 text-align:center;
 
-box-shadow:0 10px 30px #999;
+box-shadow:0 10px 30px #777;
 
 }
 
@@ -46,39 +46,17 @@ color:#f5a623;
 
 
 
-.subtitle{
-
-color:#777;
-
-}
-
-
-
-.money{
-
-font-size:35px;
-
-background:#fff3a6;
-
-padding:15px;
-
-border-radius:20px;
-
-margin:20px;
-
-}
-
-
-
 button{
 
 background:#ffd43b;
 
 border:none;
 
-border-radius:15px;
-
 padding:15px;
+
+margin:8px;
+
+border-radius:15px;
 
 font-size:18px;
 
@@ -100,11 +78,17 @@ transform:translateY(-3px);
 
 
 
-button:active{
+.money{
 
-transform:translateY(3px);
+background:#fff1a8;
 
-box-shadow:none;
+padding:20px;
+
+border-radius:20px;
+
+font-size:35px;
+
+margin:20px;
 
 }
 
@@ -126,10 +110,6 @@ display:flex;
 
 justify-content:space-around;
 
-margin:20px;
-
-font-size:20px;
-
 }
 
 
@@ -140,23 +120,13 @@ display:grid;
 
 grid-template-columns:1fr 1fr;
 
-gap:15px;
-
-}
-
-
-
-small{
-
-color:#555;
+gap:10px;
 
 }
 
 
 
 #message{
-
-margin-top:25px;
 
 font-style:italic;
 
