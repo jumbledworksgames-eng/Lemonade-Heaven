@@ -1,12 +1,8 @@
 // ============================
 // Lemonade Heaven v0.2
-// Script
+// Clean Script
 // ============================
 
-
-// ----------------------------
-// GAME DATA
-// ----------------------------
 
 let game = {
 
@@ -23,19 +19,6 @@ let game = {
 
 
     achievements: {},
-
-
-    settings: {
-
-        music: true,
-
-        sfx: true,
-
-        musicVolume: 0.7,
-
-        sfxVolume: 0.8
-
-    },
 
 
     upgrades: {
@@ -64,81 +47,10 @@ let game = {
 
 
 
-// ----------------------------
-// AUDIO
-// ----------------------------
 
-
-const music =
-document.getElementById("music");
-
-
-const sellSound =
-document.getElementById("sellSound");
-
-
-const buySound =
-document.getElementById("buySound");
-
-
-const achievementSound =
-document.getElementById("achievementSound");
-
-
-
-function updateAudio(){
-
-    music.volume =
-    game.settings.musicVolume;
-
-
-    sellSound.volume =
-    game.settings.sfxVolume;
-
-
-    buySound.volume =
-    game.settings.sfxVolume;
-
-
-    achievementSound.volume =
-    game.settings.sfxVolume;
-
-
-    if(game.settings.music){
-
-        music.play().catch(()=>{});
-
-    }
-
-    else{
-
-        music.pause();
-
-    }
-
-}
-
-
-
-function playSFX(sound){
-
-    if(game.settings.sfx){
-
-        sound.currentTime = 0;
-
-        sound.play();
-
-    }
-
-}
-
-
-
-
-
-// ----------------------------
+// ============================
 // SAVE / LOAD
-// ----------------------------
+// ============================
 
 
 function saveGame(){
@@ -162,22 +74,19 @@ function loadGame(){
 
     if(save){
 
-        game =
-        JSON.parse(save);
-
-        updateAudio();
+        game = JSON.parse(save);
 
         showGame();
 
         updateUI();
 
+        checkAchievements();
+
     }
 
     else{
 
-        alert(
-        "No saved game found!"
-        );
+        alert("No saved game found!");
 
     }
 
@@ -187,19 +96,55 @@ function loadGame(){
 
 
 
-// ----------------------------
+// ============================
 // NEW GAME
-// ----------------------------
+// ============================
 
 
 function newGame(){
 
     localStorage.removeItem(
-    "lemonadeHeavenSave"
+        "lemonadeHeavenSave"
     );
 
 
-    location.reload();
+    game = {
+
+        money:0,
+
+        clickIncome:1,
+
+        passiveIncome:0,
+
+        multiplier:1,
+
+        upgradesBought:0,
+
+        achievements:{},
+
+
+        upgrades:{
+
+            recipe:{cost:10},
+            employee:{cost:50},
+            shop:{cost:250},
+            factory:{cost:1000},
+            delivery:{cost:5000},
+            advertising:{cost:15000},
+            farm:{cost:50000},
+            ai:{cost:250000},
+            global:{cost:1000000}
+
+        }
+
+    };
+
+
+    saveGame();
+
+    showGame();
+
+    updateUI();
 
 }
 
@@ -207,10 +152,9 @@ function newGame(){
 
 
 
-
-// ----------------------------
-// SCREEN CHANGES
-// ----------------------------
+// ============================
+// SCREEN SWITCHING
+// ============================
 
 
 function showGame(){
@@ -230,27 +174,27 @@ function showGame(){
 
 
 
-// ----------------------------
+
+
+// ============================
 // SELL LEMONADE
-// ----------------------------
+// ============================
 
 
 function sellLemonade(){
+
 
     game.money +=
     game.clickIncome *
     game.multiplier;
 
 
-    playSFX(sellSound);
-
+    updateUI();
 
     checkAchievements();
 
-
-    updateUI();
-
     saveGame();
+
 
 }
 
@@ -259,9 +203,10 @@ function sellLemonade(){
 
 
 
-// ----------------------------
+
+// ============================
 // UPGRADES
-// ----------------------------
+// ============================
 
 
 function buyUpgrade(type){
@@ -271,11 +216,14 @@ function buyUpgrade(type){
     game.upgrades[type];
 
 
+
     if(game.money < upgrade.cost){
+
 
         setStatus(
         "❌ Not enough money!"
         );
+
 
         return;
 
@@ -283,8 +231,7 @@ function buyUpgrade(type){
 
 
 
-    game.money -=
-    upgrade.cost;
+    game.money -= upgrade.cost;
 
 
     game.upgradesBought++;
@@ -296,7 +243,7 @@ function buyUpgrade(type){
 
         case "recipe":
 
-            game.clickIncome++;
+            game.clickIncome += 1;
 
         break;
 
@@ -312,7 +259,7 @@ function buyUpgrade(type){
 
         case "shop":
 
-            game.multiplier *= 1.1;
+            game.multiplier *= 1.10;
 
         break;
 
@@ -371,11 +318,8 @@ function buyUpgrade(type){
 
     upgrade.cost =
     Math.floor(
-    upgrade.cost * 1.5
+        upgrade.cost * 1.5
     );
-
-
-    playSFX(buySound);
 
 
     setStatus(
@@ -383,12 +327,12 @@ function buyUpgrade(type){
     );
 
 
-    checkAchievements();
-
-
     updateUI();
 
+    checkAchievements();
+
     saveGame();
+
 
 }
 
@@ -396,9 +340,11 @@ function buyUpgrade(type){
 
 
 
-// ----------------------------
+
+
+// ============================
 // ACHIEVEMENTS
-// ----------------------------
+// ============================
 
 
 const achievements = {
@@ -410,7 +356,7 @@ const achievements = {
 
         text:"Earn $100",
 
-        condition:()=>game.money>=100
+        condition:()=>game.money >= 100
 
     },
 
@@ -421,7 +367,7 @@ const achievements = {
 
         text:"Earn $1,000",
 
-        condition:()=>game.money>=1000
+        condition:()=>game.money >= 1000
 
     },
 
@@ -432,7 +378,7 @@ const achievements = {
 
         text:"Earn $10,000",
 
-        condition:()=>game.money>=10000
+        condition:()=>game.money >= 10000
 
     },
 
@@ -443,7 +389,7 @@ const achievements = {
 
         text:"Earn $100,000",
 
-        condition:()=>game.money>=100000
+        condition:()=>game.money >= 100000
 
     },
 
@@ -454,7 +400,7 @@ const achievements = {
 
         text:"Earn $1,000,000",
 
-        condition:()=>game.money>=1000000
+        condition:()=>game.money >= 1000000
 
     },
 
@@ -465,7 +411,7 @@ const achievements = {
 
         text:"Buy 100 upgrades",
 
-        condition:()=>game.upgradesBought>=100
+        condition:()=>game.upgradesBought >= 100
 
     },
 
@@ -476,11 +422,14 @@ const achievements = {
 
         text:"Buy Global Expansion",
 
-        condition:()=>game.upgrades.global.cost > 1000000
+        condition:()=>game.multiplier >= 2
 
     }
 
+
 };
+
+
 
 
 
@@ -491,23 +440,20 @@ function checkAchievements(){
     for(let id in achievements){
 
 
-        if(!game.achievements[id]){
+        if(
+            !game.achievements[id] &&
+            achievements[id].condition()
+        ){
 
 
-            if(
-            achievements[id]
-            .condition()
-            ){
+            unlockAchievement(id);
 
-
-                unlockAchievement(id);
-
-
-            }
 
         }
 
+
     }
+
 
 }
 
@@ -518,12 +464,7 @@ function checkAchievements(){
 function unlockAchievement(id){
 
 
-    game.achievements[id]=true;
-
-
-    playSFX(
-    achievementSound
-    );
+    game.achievements[id] = true;
 
 
     let popup =
@@ -534,7 +475,8 @@ function unlockAchievement(id){
 
     popup.innerHTML =
 
-    "🏆 " +
+    "🏆 "
+    +
     achievements[id].name
     +
     "<br>"
@@ -546,6 +488,10 @@ function unlockAchievement(id){
     popup.classList.remove(
     "hidden"
     );
+
+
+
+    updateAchievementMenu();
 
 
 
@@ -566,144 +512,127 @@ function unlockAchievement(id){
 
 
 
-// ----------------------------
-// SETTINGS
-// ----------------------------
 
+function updateAchievementMenu(){
 
-document
-.getElementById("settingsButton")
-.onclick = ()=>{
 
-document
-.getElementById("settingsPanel")
-.classList.remove("hidden");
+    for(let id in achievements){
 
-};
 
+        let element =
+        document.getElementById(id);
 
 
-document
-.getElementById("closeSettings")
-.onclick = ()=>{
 
-document
-.getElementById("settingsPanel")
-.classList.add("hidden");
+        if(game.achievements[id]){
 
-};
 
+            element.innerHTML =
 
+            "🏆 "
+            +
+            achievements[id].name
+            +
+            "<br>"
+            +
+            achievements[id].text;
 
 
 
-document
-.getElementById("musicToggle")
-.onclick = ()=>{
+            element.classList.add(
+            "unlocked"
+            );
 
 
-game.settings.music =
-!game.settings.music;
+        }
 
 
-updateAudio();
+    }
 
-saveGame();
 
-};
+}
 
 
 
-document
-.getElementById("sfxToggle")
-.onclick = ()=>{
 
 
-game.settings.sfx =
-!game.settings.sfx;
 
+// ============================
+// UI
+// ============================
 
-saveGame();
 
-};
+function updateUI(){
 
 
+    document
+    .getElementById("money")
+    .textContent =
+    Math.floor(game.money);
 
 
 
-document
-.getElementById("musicVolume")
-.oninput = e=>{
+    document
+    .getElementById("clickIncome")
+    .textContent =
+    (
+    game.clickIncome *
+    game.multiplier
+    ).toFixed(1);
 
 
-game.settings.musicVolume =
-e.target.value / 100;
 
+    document
+    .getElementById("passiveIncome")
+    .textContent =
+    (
+    game.passiveIncome *
+    game.multiplier
+    ).toFixed(1);
 
-updateAudio();
 
-saveGame();
 
-};
 
+    for(let key in game.upgrades){
 
 
+        document
+        .getElementById(
+            key + "Cost"
+        )
+        .textContent =
+        "$" + game.upgrades[key].cost;
 
-document
-.getElementById("sfxVolume")
-.oninput = e=>{
 
+    }
 
-game.settings.sfxVolume =
-e.target.value / 100;
 
+    updateAchievementMenu();
 
-saveGame();
+}
 
-};
 
 
 
 
+function setStatus(text){
 
-// ----------------------------
-// ACHIEVEMENT MENU
-// ----------------------------
+    document
+    .getElementById("status")
+    .textContent =
+    text;
 
+}
 
-document
-.getElementById("achievementButton")
-.onclick = ()=>{
 
 
-document
-.getElementById("achievementPanel")
-.classList.remove("hidden");
 
 
-};
 
 
-
-document
-.getElementById("closeAchievements")
-.onclick = ()=>{
-
-
-document
-.getElementById("achievementPanel")
-.classList.add("hidden");
-
-
-};
-
-
-
-
-
-// ----------------------------
-// BUTTONS
-// ----------------------------
+// ============================
+// MENUS
+// ============================
 
 
 document
@@ -733,13 +662,13 @@ document
 .forEach(button=>{
 
 
-button.onclick=()=>{
+    button.onclick = ()=>{
 
-buyUpgrade(
-button.dataset.upgrade
-);
+        buyUpgrade(
+        button.dataset.upgrade
+        );
 
-};
+    };
 
 
 });
@@ -747,92 +676,84 @@ button.dataset.upgrade
 
 
 
-// ----------------------------
-// UI UPDATE
-// ----------------------------
-
-
-function updateUI(){
-
 
 document
-.getElementById("money")
-.textContent =
-Math.floor(game.money);
-
-
+.getElementById("settingsButton")
+.onclick = ()=>{
 
 document
-.getElementById("clickIncome")
-.textContent =
-(game.clickIncome *
-game.multiplier)
-.toFixed(1);
+.getElementById("settingsPanel")
+.classList.remove("hidden");
+
+};
+
 
 
 
 document
-.getElementById("passiveIncome")
-.textContent =
-(game.passiveIncome *
-game.multiplier)
-.toFixed(1);
+.getElementById("closeSettings")
+.onclick = ()=>{
+
+document
+.getElementById("settingsPanel")
+.classList.add("hidden");
+
+};
 
 
 
-for(let key in game.upgrades){
 
 
 document
-.getElementById(key+"Cost")
-.textContent =
-"$"+game.upgrades[key].cost;
-
-
-}
-
-
-}
-
-
-
-
-
-function setStatus(text){
+.getElementById("achievementButton")
+.onclick = ()=>{
 
 document
-.getElementById("status")
-.textContent =
-text;
+.getElementById("achievementPanel")
+.classList.remove("hidden");
 
-}
-
+};
 
 
 
 
-// ----------------------------
-// PASSIVE MONEY
-// ----------------------------
+
+document
+.getElementById("closeAchievements")
+.onclick = ()=>{
+
+document
+.getElementById("achievementPanel")
+.classList.add("hidden");
+
+};
+
+
+
+
+
+
+
+// ============================
+// PASSIVE INCOME
+// ============================
 
 
 setInterval(()=>{
 
 
-game.money +=
-game.passiveIncome *
-game.multiplier;
+    game.money +=
+    game.passiveIncome *
+    game.multiplier;
 
 
-
-checkAchievements();
-
-
-updateUI();
+    checkAchievements();
 
 
-saveGame();
+    updateUI();
 
+
+    saveGame();
 
 
 },1000);
