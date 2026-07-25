@@ -1,173 +1,268 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Lemonade Heaven 🍋</title>
+
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-<div class="game">
+<!-- Background -->
 
-<!-- START SCREEN -->
+<div class="sky">
 
-<div id="startScreen">
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
 
-<h1>🍋 Lemonade Heaven</h1>
+</div>
 
-<p>
-Build a lemonade stand.
-<br>
-Create a lemonade empire.
-</p>
 
-<button onclick="newGame()">
-NEW GAME
-</button>
+<!-- ========================= -->
+<!-- START MENU -->
+<!-- ========================= -->
 
-<button onclick="continueGame()">
-CONTINUE
-</button>
+<div id="menu" class="screen">
+
+    <h1>Lemonade Heaven 🍋</h1>
+
+    <p class="tagline">
+        Build a tiny lemonade stand...
+        <br>
+        into a worldwide empire.
+    </p>
+
+    <button id="newGameButton">
+        🍋 New Game
+    </button>
+
+    <button id="continueButton">
+        ▶ Continue
+    </button>
+
+    <p class="version">
+        Version 0.1
+    </p>
 
 </div>
 
 
 
-<!-- GAME SCREEN -->
+<!-- ========================= -->
+<!-- GAME -->
+<!-- ========================= -->
 
-<div id="gameScreen" style="display:none;">
+<div id="game" class="hidden">
 
-<h1>🍋 Lemonade Heaven</h1>
+<header>
 
+<div class="moneyCard">
 
-<div class="money">
-💰 $<span id="money">0</span>
+<h2>$<span id="money">0</span></h2>
+
+<p>Money</p>
+
 </div>
-
-
-<button class="sell" onclick="sellLemonade()">
-🍋 Sell Lemonade
-</button>
-
 
 
 <div class="stats">
 
-<p>
-Per Click:
-$<span id="clickPower">1</span>
-</p>
+<div>
 
-<p>
-Per Second:
-$<span id="income">0</span>
+<strong>Per Click</strong>
+
+<p>$<span id="clickIncome">1</span></p>
+
+</div>
+
+
+<div>
+
+<strong>Per Second</strong>
+
+<p>$<span id="passiveIncome">0</span></p>
+
+</div>
+
+</div>
+
+</header>
+
+
+
+<main>
+
+<div class="left">
+
+<h2>Your Stand</h2>
+
+<div id="lemonButton">
+
+🍋
+
+</div>
+
+<p class="hint">
+Click the lemon to sell lemonade!
 </p>
 
 </div>
 
 
 
-<h2>🏪 Upgrades</h2>
+<div class="right">
 
+<h2>Upgrades</h2>
 
-<div class="upgrades">
+<div id="upgradeList">
 
+<button class="upgrade" data-upgrade="recipe">
 
-<button onclick="buy('recipe')">
+<div>
+
 🍋 Better Recipe
-<br>
-+$1/click
-<br>
-$<span id="recipe">10</span>
+
+</div>
+
+<span id="recipeCost">$10</span>
+
 </button>
 
 
-<button onclick="buy('employee')">
+
+<button class="upgrade" data-upgrade="employee">
+
+<div>
+
 👥 Employees
-<br>
-+$0.1/sec
-<br>
-$<span id="employee">50</span>
+
+</div>
+
+<span id="employeeCost">$50</span>
+
 </button>
 
 
-<button onclick="buy('shop')">
+
+<button class="upgrade" data-upgrade="shop">
+
+<div>
+
 🏪 Shops
-<br>
-+10% profit
-<br>
-$<span id="shop">250</span>
+
+</div>
+
+<span id="shopCost">$250</span>
+
 </button>
 
 
-<button onclick="buy('factory')">
+
+<button class="upgrade" data-upgrade="factory">
+
+<div>
+
 🏭 Factory
-<br>
-+$10/sec
-<br>
-$<span id="factory">1000</span>
+
+</div>
+
+<span id="factoryCost">$1000</span>
+
 </button>
 
 
-<button onclick="buy('delivery')">
-🚚 Delivery
-<br>
-+$5/sec
-<br>
-$<span id="delivery">5000</span>
+
+<button class="upgrade" data-upgrade="delivery">
+
+<div>
+
+🚚 Delivery Service
+
+</div>
+
+<span id="deliveryCost">$5000</span>
+
 </button>
 
 
-<button onclick="buy('advertising')">
+
+<button class="upgrade" data-upgrade="advertising">
+
+<div>
+
 📢 Advertising
-<br>
-+25% profit
-<br>
-$<span id="advertising">15000</span>
+
+</div>
+
+<span id="advertisingCost">$15000</span>
+
 </button>
 
 
-<button onclick="buy('farm')">
+
+<button class="upgrade" data-upgrade="farm">
+
+<div>
+
 🍋 Lemon Farm
-<br>
-+$50/sec
-<br>
-$<span id="farm">50000</span>
+
+</div>
+
+<span id="farmCost">$50000</span>
+
 </button>
 
 
-<button onclick="buy('ai')">
+
+<button class="upgrade" data-upgrade="ai">
+
+<div>
+
 🤖 AI Machines
-<br>
-+$250/sec
-<br>
-$<span id="ai">250000</span>
+
+</div>
+
+<span id="aiCost">$250000</span>
+
 </button>
 
 
-<button onclick="buy('global')">
+
+<button class="upgrade" data-upgrade="global">
+
+<div>
+
 🌎 Global Expansion
-<br>
-x2 profit
-<br>
-$<span id="global">1000000</span>
-</button>
-
 
 </div>
 
+<span id="globalCost">$1000000</span>
 
-<p id="message">
-Welcome!
-</p>
-
-
-<button onclick="resetGame()">
-Reset Game
 </button>
 
+</div>
 
 </div>
+
+</main>
+
+
+<footer>
+
+<div id="status">
+
+Welcome to Lemonade Heaven!
+
+</div>
+
+</footer>
 
 </div>
 
@@ -175,4 +270,5 @@ Reset Game
 <script src="script.js"></script>
 
 </body>
+
 </html>
