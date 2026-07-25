@@ -1,6 +1,6 @@
 /* ========================= */
 /* Lemonade Heaven v0.2      */
-/* Style                     */
+/* Clean Style               */
 /* ========================= */
 
 
@@ -19,9 +19,9 @@ body{
 
     background:
     linear-gradient(
-        #73d8ff,
-        #b9efff,
-        #fff1a6
+        #72d9ff,
+        #c4f2ff,
+        #fff1a8
     );
 
     overflow-x:hidden;
@@ -29,8 +29,9 @@ body{
 }
 
 
+
 /* ========================= */
-/* SKY + CLOUDS              */
+/* SKY                       */
 /* ========================= */
 
 
@@ -40,11 +41,12 @@ body{
 
     inset:0;
 
-    overflow:hidden;
-
     z-index:-1;
 
+    overflow:hidden;
+
 }
+
 
 
 .cloud{
@@ -64,6 +66,7 @@ body{
 }
 
 
+
 .cloud:before,
 .cloud:after{
 
@@ -76,6 +79,7 @@ body{
     border-radius:50%;
 
 }
+
 
 
 .cloud:before{
@@ -91,6 +95,7 @@ body{
 }
 
 
+
 .cloud:after{
 
     width:100px;
@@ -104,20 +109,21 @@ body{
 }
 
 
+
 .cloud1{
 
     top:80px;
 
-    animation:moveCloud 60s linear infinite;
+    animation:cloudMove 60s linear infinite;
 
 }
 
 
 .cloud2{
 
-    top:220px;
+    top:230px;
 
-    animation:moveCloud 90s linear infinite;
+    animation:cloudMove 90s linear infinite;
 
 }
 
@@ -126,23 +132,29 @@ body{
 
     top:380px;
 
-    animation:moveCloud 75s linear infinite;
+    animation:cloudMove 75s linear infinite;
 
 }
 
 
 
-@keyframes moveCloud{
+@keyframes cloudMove{
 
     from{
+
         left:-250px;
+
     }
 
+
     to{
+
         left:110%;
+
     }
 
 }
+
 
 
 
@@ -152,11 +164,19 @@ body{
 /* ========================= */
 
 
+.hidden{
+
+    display:none !important;
+
+}
+
+
+
 button{
 
-    border:none;
-
     background:#ffd84d;
+
+    border:none;
 
     padding:16px 25px;
 
@@ -169,11 +189,12 @@ button{
     cursor:pointer;
 
     box-shadow:
-    0 6px #d6a600;
+    0 6px #d3a400;
 
     transition:.15s;
 
 }
+
 
 
 button:hover{
@@ -183,21 +204,17 @@ button:hover{
 }
 
 
+
 button:active{
 
     transform:translateY(3px);
 
     box-shadow:
-    0 2px #d6a600;
+    0 2px #d3a400;
 
 }
 
 
-.hidden{
-
-    display:none !important;
-
-}
 
 
 
@@ -212,11 +229,11 @@ button:active{
 
     display:flex;
 
-    flex-direction:column;
-
     justify-content:center;
 
     align-items:center;
+
+    flex-direction:column;
 
     text-align:center;
 
@@ -234,6 +251,7 @@ button:active{
     0 5px white;
 
 }
+
 
 
 .tagline{
@@ -269,9 +287,10 @@ button:active{
 }
 
 
+
 .menuButtons button{
 
-    width:140px;
+    width:150px;
 
     font-size:16px;
 
@@ -283,7 +302,7 @@ button:active{
 
     margin-top:30px;
 
-    color:#555;
+    color:#666;
 
 }
 
@@ -309,13 +328,16 @@ button:active{
     translate(-50%,-50%);
 
 
-    background:white;
-
     width:450px;
 
     max-width:90%;
 
+
+    background:white;
+
+
     padding:35px;
+
 
     border-radius:30px;
 
@@ -326,16 +348,17 @@ button:active{
 
     text-align:center;
 
+
     z-index:10;
 
 
-    animation:pop .25s ease;
+    animation:panelPop .25s ease;
 
 }
 
 
 
-@keyframes pop{
+@keyframes panelPop{
 
     from{
 
@@ -346,6 +369,7 @@ button:active{
         opacity:0;
 
     }
+
 
     to{
 
@@ -363,43 +387,11 @@ button:active{
 
 .panel h2{
 
-    font-size:35px;
-
     color:#ffb300;
 
+    font-size:35px;
+
     margin-bottom:20px;
-
-}
-
-
-
-.panel h3{
-
-    margin-top:20px;
-
-}
-
-
-
-
-
-/* ========================= */
-/* SETTINGS                  */
-/* ========================= */
-
-
-#settingsPanel button{
-
-    margin:10px;
-
-}
-
-
-input[type="range"]{
-
-    width:250px;
-
-    margin:15px;
 
 }
 
@@ -420,7 +412,9 @@ input[type="range"]{
 
     gap:12px;
 
-    margin:20px 0;
+    max-height:400px;
+
+    overflow-y:auto;
 
 }
 
@@ -444,7 +438,7 @@ input[type="range"]{
 
 #achievementList p.unlocked{
 
-    background:#c9ffb8;
+    background:#c8ffb0;
 
 }
 
@@ -486,11 +480,12 @@ header{
 
 
 
+
 .moneyCard{
 
     background:white;
 
-    padding:25px;
+    padding:25px 40px;
 
     border-radius:25px;
 
@@ -503,9 +498,9 @@ header{
 
 .moneyCard h2{
 
-    color:#32b34a;
-
     font-size:50px;
+
+    color:#35b64a;
 
 }
 
@@ -537,6 +532,7 @@ header{
 
 
 
+
 main{
 
     display:grid;
@@ -553,8 +549,33 @@ main{
 
 
 
+.left{
+
+    text-align:center;
+
+}
+
+
+
+.right{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:25px;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.15);
+
+}
+
+
+
+
+
 /* ========================= */
-/* LEMON BUTTON              */
+/* LEMON                    */
 /* ========================= */
 
 
@@ -565,7 +586,7 @@ main{
     height:230px;
 
 
-    margin:30px auto;
+    margin:35px auto;
 
 
     display:flex;
@@ -575,7 +596,8 @@ main{
     align-items:center;
 
 
-    background:#ffe45c;
+    background:#ffe45b;
+
 
     border-radius:50%;
 
@@ -599,7 +621,7 @@ main{
 
 #lemonButton:hover{
 
-    transform:scale(1.05);
+    transform:scale(1.06);
 
 }
 
@@ -620,18 +642,6 @@ main{
 /* ========================= */
 
 
-.right{
-
-    background:white;
-
-    padding:25px;
-
-    border-radius:25px;
-
-}
-
-
-
 #upgradeList{
 
     display:flex;
@@ -650,9 +660,14 @@ main{
 
     justify-content:space-between;
 
+    align-items:center;
+
     background:#fff8d8;
 
 }
+
+
+
 
 
 
@@ -671,10 +686,12 @@ main{
     left:50%;
 
 
-    transform:translateX(-50%);
+    transform:
+    translateX(-50%);
 
 
     background:#ffd84d;
+
 
     padding:20px 35px;
 
@@ -684,6 +701,7 @@ main{
 
     font-size:22px;
 
+
     font-weight:bold;
 
 
@@ -691,40 +709,47 @@ main{
     0 10px 25px rgba(0,0,0,.2);
 
 
-    animation:achievementPop .5s;
-
     z-index:20;
+
+
+    animation:popup .4s;
 
 }
 
 
 
-@keyframes achievementPop{
+@keyframes popup{
 
     from{
+
+        opacity:0;
 
         transform:
         translateX(-50%)
         translateY(-50px);
-
-        opacity:0;
 
     }
 
 
     to{
 
+        opacity:1;
+
         transform:
         translateX(-50%)
         translateY(0);
-
-        opacity:1;
 
     }
 
 }
 
 
+
+
+
+/* ========================= */
+/* STATUS                    */
+/* ========================= */
 
 
 #status{
@@ -735,11 +760,15 @@ main{
 
     border-radius:15px;
 
+
     text-align:center;
+
 
     margin-top:30px;
 
+
 }
+
 
 
 
@@ -750,6 +779,7 @@ main{
 
 
 @media(max-width:900px){
+
 
     main{
 
