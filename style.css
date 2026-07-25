@@ -1,6 +1,8 @@
 /* ========================= */
-/* Lemonade Heaven v0.1      */
+/* Lemonade Heaven v0.2      */
+/* Style                     */
 /* ========================= */
+
 
 *{
     margin:0;
@@ -8,26 +10,29 @@
     box-sizing:border-box;
 }
 
+
 body{
 
     font-family:Arial, Helvetica, sans-serif;
 
-    background:linear-gradient(
-        #77d8ff 0%,
-        #b6ecff 50%,
-        #fff4ad 100%
-    );
-
     min-height:100vh;
+
+    background:
+    linear-gradient(
+        #73d8ff,
+        #b9efff,
+        #fff1a6
+    );
 
     overflow-x:hidden;
 
 }
 
 
-/* ---------------------- */
-/* SKY */
-/* ---------------------- */
+/* ========================= */
+/* SKY + CLOUDS              */
+/* ========================= */
+
 
 .sky{
 
@@ -59,44 +64,42 @@ body{
 }
 
 
-.cloud::before{
+.cloud:before,
+.cloud:after{
 
     content:"";
 
     position:absolute;
+
+    background:white;
+
+    border-radius:50%;
+
+}
+
+
+.cloud:before{
 
     width:80px;
 
     height:80px;
 
-    background:white;
-
-    border-radius:50%;
+    top:-35px;
 
     left:20px;
-
-    top:-35px;
 
 }
 
 
-.cloud::after{
-
-    content:"";
-
-    position:absolute;
+.cloud:after{
 
     width:100px;
 
     height:100px;
 
-    background:white;
-
-    border-radius:50%;
+    top:-45px;
 
     right:20px;
-
-    top:-45px;
 
 }
 
@@ -105,61 +108,87 @@ body{
 
     top:80px;
 
-    animation:cloudMove 60s linear infinite;
+    animation:moveCloud 60s linear infinite;
 
 }
 
 
 .cloud2{
 
-    top:200px;
+    top:220px;
 
-    animation:cloudMove 90s linear infinite;
+    animation:moveCloud 90s linear infinite;
 
 }
 
 
 .cloud3{
 
-    top:350px;
+    top:380px;
 
-    animation:cloudMove 75s linear infinite;
+    animation:moveCloud 75s linear infinite;
 
 }
 
 
-@keyframes cloudMove{
+
+@keyframes moveCloud{
 
     from{
-
         left:-250px;
-
     }
 
     to{
-
         left:110%;
-
     }
 
 }
 
 
-/* ---------------------- */
-/* SCREENS */
-/* ---------------------- */
 
-.screen{
 
-    display:flex;
+/* ========================= */
+/* GENERAL                   */
+/* ========================= */
 
-    flex-direction:column;
 
-    align-items:center;
+button{
 
-    justify-content:center;
+    border:none;
 
-    min-height:100vh;
+    background:#ffd84d;
+
+    padding:16px 25px;
+
+    border-radius:18px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 6px #d6a600;
+
+    transition:.15s;
+
+}
+
+
+button:hover{
+
+    transform:translateY(-3px);
+
+}
+
+
+button:active{
+
+    transform:translateY(3px);
+
+    box-shadow:
+    0 2px #d6a600;
 
 }
 
@@ -171,9 +200,29 @@ body{
 }
 
 
-/* ---------------------- */
-/* MENU */
-/* ---------------------- */
+
+/* ========================= */
+/* START MENU                */
+/* ========================= */
+
+
+.screen{
+
+    min-height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+}
+
+
 
 #menu h1{
 
@@ -181,47 +230,232 @@ body{
 
     color:#ffb300;
 
-    text-shadow:0 4px white;
+    text-shadow:
+    0 5px white;
 
 }
 
 
 .tagline{
 
-    margin:25px 0;
+    margin:25px;
 
     font-size:24px;
 
     color:#444;
-
-    text-align:center;
 
     line-height:1.5;
 
 }
 
 
-.version{
-
-    margin-top:30px;
-
-    color:#666;
-
-}
-
 
 #menu button{
 
-    width:280px;
+    width:300px;
 
     margin:10px;
 
 }
 
 
-/* ---------------------- */
-/* GAME */
-/* ---------------------- */
+
+.menuButtons{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+
+.menuButtons button{
+
+    width:140px;
+
+    font-size:16px;
+
+}
+
+
+
+.version{
+
+    margin-top:30px;
+
+    color:#555;
+
+}
+
+
+
+
+
+/* ========================= */
+/* PANELS                    */
+/* ========================= */
+
+
+.panel{
+
+    position:fixed;
+
+    top:50%;
+
+    left:50%;
+
+
+    transform:
+    translate(-50%,-50%);
+
+
+    background:white;
+
+    width:450px;
+
+    max-width:90%;
+
+    padding:35px;
+
+    border-radius:30px;
+
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,.25);
+
+
+    text-align:center;
+
+    z-index:10;
+
+
+    animation:pop .25s ease;
+
+}
+
+
+
+@keyframes pop{
+
+    from{
+
+        transform:
+        translate(-50%,-50%)
+        scale(.8);
+
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:
+        translate(-50%,-50%)
+        scale(1);
+
+        opacity:1;
+
+    }
+
+}
+
+
+
+.panel h2{
+
+    font-size:35px;
+
+    color:#ffb300;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.panel h3{
+
+    margin-top:20px;
+
+}
+
+
+
+
+
+/* ========================= */
+/* SETTINGS                  */
+/* ========================= */
+
+
+#settingsPanel button{
+
+    margin:10px;
+
+}
+
+
+input[type="range"]{
+
+    width:250px;
+
+    margin:15px;
+
+}
+
+
+
+
+
+/* ========================= */
+/* ACHIEVEMENTS              */
+/* ========================= */
+
+
+#achievementList{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+    margin:20px 0;
+
+}
+
+
+
+#achievementList p{
+
+    background:#fff7d6;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    text-align:left;
+
+    font-weight:bold;
+
+}
+
+
+
+#achievementList p.unlocked{
+
+    background:#c9ffb8;
+
+}
+
+
+
+
+
+/* ========================= */
+/* GAME                      */
+/* ========================= */
+
 
 #game{
 
@@ -234,6 +468,7 @@ body{
 }
 
 
+
 header{
 
     display:flex;
@@ -242,42 +477,40 @@ header{
 
     align-items:center;
 
-    gap:30px;
-
     flex-wrap:wrap;
+
+    gap:20px;
 
 }
 
 
-/* ---------------------- */
-/* MONEY */
-/* ---------------------- */
+
 
 .moneyCard{
 
     background:white;
 
-    border-radius:20px;
+    padding:25px;
 
-    padding:20px 30px;
+    border-radius:25px;
 
-    box-shadow:0 8px 25px rgba(0,0,0,.15);
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.15);
 
 }
+
 
 
 .moneyCard h2{
 
-    font-size:48px;
-
     color:#32b34a;
+
+    font-size:50px;
 
 }
 
 
-/* ---------------------- */
-/* STATS */
-/* ---------------------- */
+
 
 .stats{
 
@@ -288,26 +521,21 @@ header{
 }
 
 
+
 .stats div{
 
     background:white;
 
     padding:20px;
 
-    border-radius:18px;
-
-    min-width:160px;
+    border-radius:20px;
 
     text-align:center;
-
-    box-shadow:0 8px 25px rgba(0,0,0,.15);
 
 }
 
 
-/* ---------------------- */
-/* MAIN */
-/* ---------------------- */
+
 
 main{
 
@@ -322,41 +550,23 @@ main{
 }
 
 
-.left{
-
-    text-align:center;
-
-}
 
 
-.right{
 
-    background:white;
+/* ========================= */
+/* LEMON BUTTON              */
+/* ========================= */
 
-    padding:20px;
-
-    border-radius:20px;
-
-    box-shadow:0 8px 25px rgba(0,0,0,.15);
-
-}
-
-
-/* ---------------------- */
-/* LEMON */
-/* ---------------------- */
 
 #lemonButton{
 
-    width:220px;
+    width:230px;
 
-    height:220px;
+    height:230px;
+
 
     margin:30px auto;
 
-    background:#ffe45d;
-
-    border-radius:50%;
 
     display:flex;
 
@@ -364,17 +574,27 @@ main{
 
     align-items:center;
 
-    font-size:100px;
+
+    background:#ffe45c;
+
+    border-radius:50%;
+
+
+    font-size:110px;
+
 
     cursor:pointer;
 
-    user-select:none;
+
+    box-shadow:
+
+    0 12px 30px rgba(0,0,0,.25);
+
 
     transition:.15s;
 
-    box-shadow:0 10px 25px rgba(0,0,0,.25);
-
 }
+
 
 
 #lemonButton:hover{
@@ -384,66 +604,33 @@ main{
 }
 
 
+
 #lemonButton:active{
 
-    transform:scale(.93);
+    transform:scale(.9);
 
 }
 
 
-.hint{
-
-    color:#555;
-
-}
 
 
-/* ---------------------- */
-/* BUTTONS */
-/* ---------------------- */
 
-button{
+/* ========================= */
+/* UPGRADES                  */
+/* ========================= */
 
-    background:#ffd84d;
 
-    border:none;
+.right{
 
-    border-radius:15px;
+    background:white;
 
-    padding:18px;
+    padding:25px;
 
-    font-size:18px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.15s;
-
-    box-shadow:0 6px #d6a600;
+    border-radius:25px;
 
 }
 
 
-button:hover{
-
-    transform:translateY(-2px);
-
-}
-
-
-button:active{
-
-    transform:translateY(4px);
-
-    box-shadow:0 2px #d6a600;
-
-}
-
-
-/* ---------------------- */
-/* UPGRADES */
-/* ---------------------- */
 
 #upgradeList{
 
@@ -456,28 +643,88 @@ button:active{
 }
 
 
+
 .upgrade{
 
     display:flex;
 
     justify-content:space-between;
 
-    align-items:center;
-
-    background:#fff8d6;
+    background:#fff8d8;
 
 }
 
 
-/* ---------------------- */
-/* STATUS */
-/* ---------------------- */
 
-footer{
 
-    margin-top:30px;
+/* ========================= */
+/* ACHIEVEMENT POPUP         */
+/* ========================= */
+
+
+#achievementPopup{
+
+    position:fixed;
+
+    top:30px;
+
+    left:50%;
+
+
+    transform:translateX(-50%);
+
+
+    background:#ffd84d;
+
+    padding:20px 35px;
+
+
+    border-radius:20px;
+
+
+    font-size:22px;
+
+    font-weight:bold;
+
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.2);
+
+
+    animation:achievementPop .5s;
+
+    z-index:20;
 
 }
+
+
+
+@keyframes achievementPop{
+
+    from{
+
+        transform:
+        translateX(-50%)
+        translateY(-50px);
+
+        opacity:0;
+
+    }
+
+
+    to{
+
+        transform:
+        translateX(-50%)
+        translateY(0);
+
+        opacity:1;
+
+    }
+
+}
+
+
 
 
 #status{
@@ -490,16 +737,19 @@ footer{
 
     text-align:center;
 
-    box-shadow:0 6px 20px rgba(0,0,0,.12);
+    margin-top:30px;
 
 }
 
 
-/* ---------------------- */
-/* MOBILE */
-/* ---------------------- */
 
-@media (max-width:900px){
+
+/* ========================= */
+/* MOBILE                    */
+/* ========================= */
+
+
+@media(max-width:900px){
 
     main{
 
@@ -507,15 +757,17 @@ footer{
 
     }
 
-    header{
-
-        flex-direction:column;
-
-    }
 
     #menu h1{
 
         font-size:50px;
+
+    }
+
+
+    .menuButtons{
+
+        flex-direction:column;
 
     }
 
