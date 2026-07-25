@@ -3,105 +3,324 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Lemonade Heaven 🍋</title>
+<title>Lemonade Heaven 🍋</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 
 </head>
 
+
 <body>
 
-<!-- Background -->
 
 <div class="sky">
 
-    <div class="cloud cloud1"></div>
-    <div class="cloud cloud2"></div>
-    <div class="cloud cloud3"></div>
+<div class="cloud cloud1"></div>
+<div class="cloud cloud2"></div>
+<div class="cloud cloud3"></div>
 
 </div>
 
 
-<!-- ========================= -->
+
+<!-- ================= -->
 <!-- START MENU -->
-<!-- ========================= -->
+<!-- ================= -->
+
 
 <div id="menu" class="screen">
 
-    <h1>Lemonade Heaven 🍋</h1>
 
-    <p class="tagline">
-        Build a tiny lemonade stand...
-        <br>
-        into a worldwide empire.
-    </p>
+<h1>🍋 Lemonade Heaven</h1>
 
-    <button id="newGameButton">
-        🍋 New Game
-    </button>
 
-    <button id="continueButton">
-        ▶ Continue
-    </button>
+<p class="tagline">
 
-    <p class="version">
-        Version 0.1
-    </p>
+Build a tiny lemonade stand...
+<br>
+Create a worldwide empire.
+
+</p>
+
+
+
+<button id="newGameButton">
+🍋 New Game
+</button>
+
+
+<button id="continueButton">
+▶ Continue
+</button>
+
+
+<div class="menuButtons">
+
+<button id="achievementButton">
+🏆 Achievements
+</button>
+
+
+<button id="settingsButton">
+⚙️ Settings
+</button>
+
+</div>
+
+
+<p class="version">
+Version 0.2
+</p>
+
 
 </div>
 
 
 
-<!-- ========================= -->
+
+
+<!-- ================= -->
+<!-- SETTINGS -->
+<!-- ================= -->
+
+
+<div id="settingsPanel" class="panel hidden">
+
+
+<h2>⚙️ Settings</h2>
+
+
+<h3>🎵 Music</h3>
+
+
+<button id="musicToggle">
+Music: ON
+</button>
+
+
+<br>
+
+
+<label>
+
+Volume
+
+<input 
+type="range"
+id="musicVolume"
+min="0"
+max="100"
+value="70">
+
+</label>
+
+
+
+
+<h3>🔊 Sound Effects</h3>
+
+
+<button id="sfxToggle">
+SFX: ON
+</button>
+
+
+<br>
+
+
+<label>
+
+Volume
+
+<input 
+type="range"
+id="sfxVolume"
+min="0"
+max="100"
+value="80">
+
+</label>
+
+
+
+<br><br>
+
+
+<button id="closeSettings">
+Close
+</button>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- ================= -->
+<!-- ACHIEVEMENTS -->
+<!-- ================= -->
+
+
+<div id="achievementPanel" class="panel hidden">
+
+
+<h2>🏆 Achievements</h2>
+
+
+<div id="achievementList">
+
+
+<p>
+🔒 First Customer
+<br>
+Earn $100
+</p>
+
+
+<p>
+🔒 Lemonade Rookie
+<br>
+Earn $1,000
+</p>
+
+
+<p>
+🔒 Lemonade Business
+<br>
+Earn $10,000
+</p>
+
+
+<p>
+🔒 Lemonade Tycoon
+<br>
+Earn $100,000
+</p>
+
+
+<p>
+🔒 Lemonade Empire
+<br>
+Earn $1,000,000
+</p>
+
+
+<p>
+🔒 Big Spender
+<br>
+Buy 100 upgrades
+</p>
+
+
+<p>
+🔒 Going Global
+<br>
+Buy Global Expansion
+</p>
+
+
+</div>
+
+
+
+<button id="closeAchievements">
+Close
+</button>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- ================= -->
 <!-- GAME -->
-<!-- ========================= -->
+<!-- ================= -->
+
 
 <div id="game" class="hidden">
 
+
+
 <header>
+
 
 <div class="moneyCard">
 
-<h2>$<span id="money">0</span></h2>
 
-<p>Money</p>
+<h2>
+$<span id="money">0</span>
+</h2>
+
+
+<p>
+Money
+</p>
+
 
 </div>
+
 
 
 <div class="stats">
 
-<div>
-
-<strong>Per Click</strong>
-
-<p>$<span id="clickIncome">1</span></p>
-
-</div>
-
 
 <div>
 
-<strong>Per Second</strong>
+<strong>
+Per Click
+</strong>
 
-<p>$<span id="passiveIncome">0</span></p>
+<p>
+$<span id="clickIncome">1</span>
+</p>
 
 </div>
 
+
+
+<div>
+
+<strong>
+Per Second
+</strong>
+
+<p>
+$<span id="passiveIncome">0</span>
+</p>
+
 </div>
+
+
+</div>
+
 
 </header>
 
 
 
+
+
 <main>
+
 
 <div class="left">
 
-<h2>Your Stand</h2>
+
+<h2>
+Your Stand
+</h2>
+
+
 
 <div id="lemonButton">
 
@@ -109,29 +328,42 @@
 
 </div>
 
+
+
 <p class="hint">
 Click the lemon to sell lemonade!
 </p>
 
+
+
 </div>
+
+
+
+
 
 
 
 <div class="right">
 
-<h2>Upgrades</h2>
+
+<h2>
+🏪 Upgrades
+</h2>
+
+
 
 <div id="upgradeList">
 
-<button class="upgrade" data-upgrade="recipe">
 
-<div>
+
+<button class="upgrade" data-upgrade="recipe">
 
 🍋 Better Recipe
 
-</div>
-
-<span id="recipeCost">$10</span>
+<span id="recipeCost">
+$10
+</span>
 
 </button>
 
@@ -139,27 +371,24 @@ Click the lemon to sell lemonade!
 
 <button class="upgrade" data-upgrade="employee">
 
-<div>
-
 👥 Employees
 
-</div>
-
-<span id="employeeCost">$50</span>
+<span id="employeeCost">
+$50
+</span>
 
 </button>
 
 
 
-<button class="upgrade" data-upgrade="shop">
 
-<div>
+<button class="upgrade" data-upgrade="shop">
 
 🏪 Shops
 
-</div>
-
-<span id="shopCost">$250</span>
+<span id="shopCost">
+$250
+</span>
 
 </button>
 
@@ -167,13 +396,11 @@ Click the lemon to sell lemonade!
 
 <button class="upgrade" data-upgrade="factory">
 
-<div>
-
 🏭 Factory
 
-</div>
-
-<span id="factoryCost">$1000</span>
+<span id="factoryCost">
+$1000
+</span>
 
 </button>
 
@@ -181,13 +408,11 @@ Click the lemon to sell lemonade!
 
 <button class="upgrade" data-upgrade="delivery">
 
-<div>
+🚚 Delivery
 
-🚚 Delivery Service
-
-</div>
-
-<span id="deliveryCost">$5000</span>
+<span id="deliveryCost">
+$5000
+</span>
 
 </button>
 
@@ -195,13 +420,11 @@ Click the lemon to sell lemonade!
 
 <button class="upgrade" data-upgrade="advertising">
 
-<div>
-
 📢 Advertising
 
-</div>
-
-<span id="advertisingCost">$15000</span>
+<span id="advertisingCost">
+$15000
+</span>
 
 </button>
 
@@ -209,13 +432,11 @@ Click the lemon to sell lemonade!
 
 <button class="upgrade" data-upgrade="farm">
 
-<div>
-
 🍋 Lemon Farm
 
-</div>
-
-<span id="farmCost">$50000</span>
+<span id="farmCost">
+$50000
+</span>
 
 </button>
 
@@ -223,13 +444,11 @@ Click the lemon to sell lemonade!
 
 <button class="upgrade" data-upgrade="ai">
 
-<div>
-
 🤖 AI Machines
 
-</div>
-
-<span id="aiCost">$250000</span>
+<span id="aiCost">
+$250000
+</span>
 
 </button>
 
@@ -237,24 +456,38 @@ Click the lemon to sell lemonade!
 
 <button class="upgrade" data-upgrade="global">
 
-<div>
-
 🌎 Global Expansion
 
-</div>
-
-<span id="globalCost">$1000000</span>
+<span id="globalCost">
+$1000000
+</span>
 
 </button>
 
-</div>
+
 
 </div>
+
+
+</div>
+
 
 </main>
 
 
+
+
+
+<div id="achievementPopup" class="hidden">
+
+🏆 Achievement Unlocked!
+
+</div>
+
+
+
 <footer>
+
 
 <div id="status">
 
@@ -262,12 +495,60 @@ Welcome to Lemonade Heaven!
 
 </div>
 
+
 </footer>
+
+
 
 </div>
 
 
+
+
+
+
+
+<!-- ================= -->
+<!-- AUDIO -->
+<!-- ================= -->
+
+
+<audio id="music" loop>
+
+<source src="assets/music/theme.mp3">
+
+</audio>
+
+
+
+<audio id="sellSound">
+
+<source src="assets/sounds/sell.wav">
+
+</audio>
+
+
+
+<audio id="buySound">
+
+<source src="assets/sounds/buy.wav">
+
+</audio>
+
+
+
+<audio id="achievementSound">
+
+<source src="assets/sounds/achievement.wav">
+
+</audio>
+
+
+
+
+
 <script src="script.js"></script>
+
 
 </body>
 
