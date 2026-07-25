@@ -1,301 +1,318 @@
-let money = 0;
+// =========================
+// Lemonade Heaven v0.1
+// =========================
 
-let clickPower = 1;
+// ---------- Game Data ----------
 
-let income = 0;
+let game = {
+    money: 0,
 
-let multiplier = 1;
+    clickIncome: 1,
+    passiveIncome: 0,
+    multiplier: 1,
 
+    upgrades: {
 
-let prices = {
+        recipe: {
+            cost: 10
+        },
 
-recipe:10,
-employee:50,
-shop:250,
-factory:1000,
-delivery:5000,
-advertising:15000,
-farm:50000,
-ai:250000,
-global:1000000
+        employee: {
+            cost: 50
+        },
+
+        shop: {
+            cost: 250
+        },
+
+        factory: {
+            cost: 1000
+        },
+
+        delivery: {
+            cost: 5000
+        },
+
+        advertising: {
+            cost: 15000
+        },
+
+        farm: {
+            cost: 50000
+        },
+
+        ai: {
+            cost: 250000
+        },
+
+        global: {
+            cost: 1000000
+        }
+
+    }
 
 };
 
 
+// ---------- Save ----------
 
-function newGame(){
+function saveGame() {
 
-money = 0;
-
-clickPower = 1;
-
-income = 0;
-
-multiplier = 1;
-
-
-prices = {
-
-recipe:10,
-employee:50,
-shop:250,
-factory:1000,
-delivery:5000,
-advertising:15000,
-farm:50000,
-ai:250000,
-global:1000000
-
-};
-
-
-saveGame();
-
-
-openGame();
+    localStorage.setItem(
+        "lemonadeHeavenSave",
+        JSON.stringify(game)
+    );
 
 }
 
 
+// ---------- Load ----------
 
+function loadGame() {
 
-function openGame(){
+    let save =
+        localStorage.getItem("lemonadeHeavenSave");
 
-document.getElementById("startScreen").style.display="none";
+    if (save) {
 
-document.getElementById("gameScreen").style.display="block";
+        game = JSON.parse(save);
 
-update();
+        startGame();
 
-}
+    }
+    else {
 
+        alert("No save found!");
 
-
-
-function sellLemonade(){
-
-money += clickPower * multiplier;
-
-update();
-
-saveGame();
+    }
 
 }
 
 
+// ---------- New Game ----------
 
+function newGame() {
 
-function buy(item){
+    localStorage.removeItem("lemonadeHeavenSave");
 
+    game = {
 
-if(money >= prices[item]){
+        money: 0,
 
+        clickIncome: 1,
 
-money -= prices[item];
+        passiveIncome: 0,
 
+        multiplier: 1,
 
+        upgrades: {
 
-switch(item){
+            recipe:{cost:10},
+            employee:{cost:50},
+            shop:{cost:250},
+            factory:{cost:1000},
+            delivery:{cost:5000},
+            advertising:{cost:15000},
+            farm:{cost:50000},
+            ai:{cost:250000},
+            global:{cost:1000000}
 
+        }
 
-case "recipe":
-clickPower += 1;
-break;
+    };
 
-
-case "employee":
-income += 0.1;
-break;
-
-
-case "shop":
-multiplier += 0.1;
-break;
-
-
-case "factory":
-income += 10;
-break;
-
-
-case "delivery":
-income += 5;
-break;
-
-
-case "advertising":
-multiplier += 0.25;
-break;
-
-
-case "farm":
-income += 50;
-break;
-
-
-case "ai":
-income += 250;
-break;
-
-
-case "global":
-multiplier *= 2;
-break;
-
+    startGame();
 
 }
 
 
+// ---------- Open Game ----------
 
-prices[item] *= 2;
+function startGame() {
 
+    document.getElementById("menu").classList.add("hidden");
 
-document.getElementById("message").innerHTML =
-"✨ Upgrade purchased!";
+    document.getElementById("game").classList.remove("hidden");
 
-
-saveGame();
-
-}
-
-else{
-
-document.getElementById("message").innerHTML =
-"❌ Not enough money!";
+    updateUI();
 
 }
 
 
-update();
+// ---------- Sell Lemonade ----------
+
+function sellLemonade() {
+
+    game.money +=
+        game.clickIncome * game.multiplier;
+
+    updateUI();
+
+    saveGame();
 
 }
 
 
+// ---------- Buy Upgrade ----------
 
+function buyUpgrade(type) {
 
+    let upgrade = game.upgrades[type];
 
-function update(){
+    if (game.money < upgrade.cost) {
 
+        setStatus("❌ Not enough money!");
 
-document.getElementById("money").innerHTML =
-Math.floor(money);
+        return;
 
+    }
 
-document.getElementById("clickPower").innerHTML =
-Math.floor(clickPower * multiplier);
+    game.money -= upgrade.cost;
 
+    switch(type){
 
-document.getElementById("income").innerHTML =
-Math.floor(income * multiplier);
+        case "recipe":
+            game.clickIncome += 1;
+            break;
 
+        case "employee":
+            game.passiveIncome += 0.1;
+            break;
 
+        case "shop":
+            game.multiplier *= 1.10;
+            break;
 
-for(let item in prices){
+        case "factory":
+            game.passiveIncome += 10;
+            break;
 
-document.getElementById(item).innerHTML =
-prices[item];
+        case "delivery":
+            game.passiveIncome += 5;
+            break;
 
-}
+        case "advertising":
+            game.multiplier *= 1.25;
+            break;
 
+        case "farm":
+            game.passiveIncome += 50;
+            break;
 
-}
+        case "ai":
+            game.passiveIncome += 250;
+            break;
 
+        case "global":
+            game.multiplier *= 2;
+            break;
 
+    }
 
+    upgrade.cost =
+        Math.floor(upgrade.cost * 1.5);
 
+    setStatus("✨ Upgrade purchased!");
 
-function saveGame(){
+    updateUI();
 
-let save = {
-
-money,
-clickPower,
-income,
-multiplier,
-prices
-
-};
-
-
-localStorage.setItem(
-"lemonadeSave",
-JSON.stringify(save)
-);
-
-}
-
-
-
-
-function continueGame(){
-
-
-let save = localStorage.getItem(
-"lemonadeSave"
-);
-
-
-if(save){
-
-
-let data = JSON.parse(save);
-
-
-money = data.money;
-
-clickPower = data.clickPower;
-
-income = data.income;
-
-multiplier = data.multiplier;
-
-prices = data.prices;
-
-
-openGame();
-
-
-}
-
-else{
-
-
-alert("No saved game found!");
+    saveGame();
 
 }
 
 
+// ---------- Update UI ----------
+
+function updateUI() {
+
+    document.getElementById("money").textContent =
+        game.money.toFixed(1);
+
+    document.getElementById("clickIncome").textContent =
+        (game.clickIncome * game.multiplier).toFixed(1);
+
+    document.getElementById("passiveIncome").textContent =
+        (game.passiveIncome * game.multiplier).toFixed(1);
+
+
+    document.getElementById("recipeCost").textContent =
+        "$" + game.upgrades.recipe.cost;
+
+    document.getElementById("employeeCost").textContent =
+        "$" + game.upgrades.employee.cost;
+
+    document.getElementById("shopCost").textContent =
+        "$" + game.upgrades.shop.cost;
+
+    document.getElementById("factoryCost").textContent =
+        "$" + game.upgrades.factory.cost;
+
+    document.getElementById("deliveryCost").textContent =
+        "$" + game.upgrades.delivery.cost;
+
+    document.getElementById("advertisingCost").textContent =
+        "$" + game.upgrades.advertising.cost;
+
+    document.getElementById("farmCost").textContent =
+        "$" + game.upgrades.farm.cost;
+
+    document.getElementById("aiCost").textContent =
+        "$" + game.upgrades.ai.cost;
+
+    document.getElementById("globalCost").textContent =
+        "$" + game.upgrades.global.cost;
+
 }
 
 
+// ---------- Status ----------
 
+function setStatus(text){
 
-
-function resetGame(){
-
-localStorage.removeItem(
-"lemonadeSave"
-);
-
-
-location.reload();
+    document.getElementById("status").textContent = text;
 
 }
 
 
+// ---------- Passive Income ----------
 
+setInterval(function(){
 
-// Passive income
+    game.money +=
+        game.passiveIncome * game.multiplier;
 
-setInterval(()=>{
+    updateUI();
 
-
-money += income * multiplier;
-
-
-update();
-
-saveGame();
-
+    saveGame();
 
 },1000);
+
+
+// ---------- Buttons ----------
+
+document
+.getElementById("newGameButton")
+.addEventListener("click", newGame);
+
+
+document
+.getElementById("continueButton")
+.addEventListener("click", loadGame);
+
+
+document
+.getElementById("lemonButton")
+.addEventListener("click", sellLemonade);
+
+
+document
+.querySelectorAll(".upgrade")
+.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        buyUpgrade(button.dataset.upgrade);
+
+    });
+
+});
