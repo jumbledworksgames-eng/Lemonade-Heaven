@@ -1,133 +1,522 @@
+/* ========================= */
+/* Lemonade Heaven v0.1      */
+/* ========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
 body{
 
-margin:0;
+    font-family:Arial, Helvetica, sans-serif;
 
-height:100vh;
+    background:linear-gradient(
+        #77d8ff 0%,
+        #b6ecff 50%,
+        #fff4ad 100%
+    );
 
-display:flex;
+    min-height:100vh;
 
-justify-content:center;
-
-align-items:center;
-
-font-family:Arial;
-
-background:linear-gradient(#6dd5fa,#fff3a6);
+    overflow-x:hidden;
 
 }
 
 
+/* ---------------------- */
+/* SKY */
+/* ---------------------- */
 
-.game{
+.sky{
 
-background:white;
+    position:fixed;
 
-width:550px;
+    inset:0;
 
-padding:30px;
+    overflow:hidden;
 
-border-radius:30px;
-
-text-align:center;
-
-box-shadow:0 10px 30px #777;
-
-}
-
-
-
-h1{
-
-font-size:45px;
-
-color:#f5a623;
+    z-index:-1;
 
 }
 
 
+.cloud{
+
+    position:absolute;
+
+    width:180px;
+
+    height:60px;
+
+    background:white;
+
+    border-radius:100px;
+
+    opacity:.8;
+
+}
+
+
+.cloud::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:80px;
+
+    height:80px;
+
+    background:white;
+
+    border-radius:50%;
+
+    left:20px;
+
+    top:-35px;
+
+}
+
+
+.cloud::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:100px;
+
+    height:100px;
+
+    background:white;
+
+    border-radius:50%;
+
+    right:20px;
+
+    top:-45px;
+
+}
+
+
+.cloud1{
+
+    top:80px;
+
+    animation:cloudMove 60s linear infinite;
+
+}
+
+
+.cloud2{
+
+    top:200px;
+
+    animation:cloudMove 90s linear infinite;
+
+}
+
+
+.cloud3{
+
+    top:350px;
+
+    animation:cloudMove 75s linear infinite;
+
+}
+
+
+@keyframes cloudMove{
+
+    from{
+
+        left:-250px;
+
+    }
+
+    to{
+
+        left:110%;
+
+    }
+
+}
+
+
+/* ---------------------- */
+/* SCREENS */
+/* ---------------------- */
+
+.screen{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-height:100vh;
+
+}
+
+
+.hidden{
+
+    display:none !important;
+
+}
+
+
+/* ---------------------- */
+/* MENU */
+/* ---------------------- */
+
+#menu h1{
+
+    font-size:70px;
+
+    color:#ffb300;
+
+    text-shadow:0 4px white;
+
+}
+
+
+.tagline{
+
+    margin:25px 0;
+
+    font-size:24px;
+
+    color:#444;
+
+    text-align:center;
+
+    line-height:1.5;
+
+}
+
+
+.version{
+
+    margin-top:30px;
+
+    color:#666;
+
+}
+
+
+#menu button{
+
+    width:280px;
+
+    margin:10px;
+
+}
+
+
+/* ---------------------- */
+/* GAME */
+/* ---------------------- */
+
+#game{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    padding:40px;
+
+}
+
+
+header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:30px;
+
+    flex-wrap:wrap;
+
+}
+
+
+/* ---------------------- */
+/* MONEY */
+/* ---------------------- */
+
+.moneyCard{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:20px 30px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.15);
+
+}
+
+
+.moneyCard h2{
+
+    font-size:48px;
+
+    color:#32b34a;
+
+}
+
+
+/* ---------------------- */
+/* STATS */
+/* ---------------------- */
+
+.stats{
+
+    display:flex;
+
+    gap:20px;
+
+}
+
+
+.stats div{
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:18px;
+
+    min-width:160px;
+
+    text-align:center;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.15);
+
+}
+
+
+/* ---------------------- */
+/* MAIN */
+/* ---------------------- */
+
+main{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:40px;
+
+    margin-top:40px;
+
+}
+
+
+.left{
+
+    text-align:center;
+
+}
+
+
+.right{
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.15);
+
+}
+
+
+/* ---------------------- */
+/* LEMON */
+/* ---------------------- */
+
+#lemonButton{
+
+    width:220px;
+
+    height:220px;
+
+    margin:30px auto;
+
+    background:#ffe45d;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:100px;
+
+    cursor:pointer;
+
+    user-select:none;
+
+    transition:.15s;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+
+}
+
+
+#lemonButton:hover{
+
+    transform:scale(1.05);
+
+}
+
+
+#lemonButton:active{
+
+    transform:scale(.93);
+
+}
+
+
+.hint{
+
+    color:#555;
+
+}
+
+
+/* ---------------------- */
+/* BUTTONS */
+/* ---------------------- */
 
 button{
 
-background:#ffd43b;
+    background:#ffd84d;
 
-border:none;
+    border:none;
 
-padding:15px;
+    border-radius:15px;
 
-margin:8px;
+    padding:18px;
 
-border-radius:15px;
+    font-size:18px;
 
-font-size:18px;
+    font-weight:bold;
 
-font-weight:bold;
+    cursor:pointer;
 
-cursor:pointer;
+    transition:.15s;
 
-box-shadow:0 5px #c99b00;
+    box-shadow:0 6px #d6a600;
 
 }
-
 
 
 button:hover{
 
-transform:translateY(-3px);
+    transform:translateY(-2px);
 
 }
 
 
+button:active{
 
-.money{
+    transform:translateY(4px);
 
-background:#fff1a8;
-
-padding:20px;
-
-border-radius:20px;
-
-font-size:35px;
-
-margin:20px;
+    box-shadow:0 2px #d6a600;
 
 }
 
 
+/* ---------------------- */
+/* UPGRADES */
+/* ---------------------- */
 
-.sell{
+#upgradeList{
 
-font-size:25px;
+    display:flex;
 
-padding:20px 40px;
+    flex-direction:column;
 
-}
-
-
-
-.stats{
-
-display:flex;
-
-justify-content:space-around;
+    gap:12px;
 
 }
 
 
+.upgrade{
 
-.upgrades{
+    display:flex;
 
-display:grid;
+    justify-content:space-between;
 
-grid-template-columns:1fr 1fr;
+    align-items:center;
 
-gap:10px;
+    background:#fff8d6;
 
 }
 
 
+/* ---------------------- */
+/* STATUS */
+/* ---------------------- */
 
-#message{
+footer{
 
-font-style:italic;
+    margin-top:30px;
+
+}
+
+
+#status{
+
+    background:white;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    box-shadow:0 6px 20px rgba(0,0,0,.12);
+
+}
+
+
+/* ---------------------- */
+/* MOBILE */
+/* ---------------------- */
+
+@media (max-width:900px){
+
+    main{
+
+        grid-template-columns:1fr;
+
+    }
+
+    header{
+
+        flex-direction:column;
+
+    }
+
+    #menu h1{
+
+        font-size:50px;
+
+    }
 
 }
